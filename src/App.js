@@ -1,17 +1,11 @@
-
 import React from "react";
 
-class App extends React.Component {
-  render() {
-    const { name } = this.props;
-    return (
-      <>
-        <h1 className="text-4xl text-white bg-black">
-          Hello {name}
-        </h1>
-      </>
-    );
-  }
+function App() {
+  return (
+    <div className="container mx-auto prose lg:prose-xl">
+      <h1>Hello there</h1>
+    </div>
+  );
 }
 
 export default App;
