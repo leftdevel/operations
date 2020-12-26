@@ -8,7 +8,11 @@ function App() {
     <Container>
       <Row className="justify-content-md-center">
         <Col xs lg="6">
-          3 of 3
+          <div className="chipGroup">
+            <div className="chip">2</div>
+            <div className="chip">X</div>
+            <div className="chip">3</div>
+          </div>
         </Col>
       </Row>
     </Container>
