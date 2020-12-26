@@ -1,13 +1,17 @@
 import React from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function App() {
   return (
-    <div>
-      <div>
-        <div>1</div>
-        <div>2</div>
-      </div>
-    </div>
+    <Container>
+      <Row className="justify-content-md-center">
+        <Col xs lg="6">
+          3 of 3
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
