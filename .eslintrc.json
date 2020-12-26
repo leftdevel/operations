@@ -1,5 +1,7 @@
 {
-  "rules": {},
+  "rules": {
+    "prettier/prettier": ["error"]
+  },
   "env": {
     "es6": true,
     "browser": true
@@ -12,13 +14,12 @@
     }
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "plugin:react/recommended"
+    "airbnb",
+    "plugin:prettier/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "plugins": ["react"]
+  "plugins": ["react", "prettier"]
 }
