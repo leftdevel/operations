@@ -3,7 +3,10 @@ import React from "react";
 function App() {
   return (
     <div className="container mx-auto prose lg:prose-xl">
-      <h1>Hello there</h1>
+      <div className="grid grid-cols-1 gap-4">
+        <div>1</div>
+        <div>2</div>
+      </div>
     </div>
   );
 }
