@@ -2,17 +2,16 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import ChipGroup from "./ChipGroup";
 
 function App() {
   return (
     <Container>
       <Row className="justify-content-md-center">
         <Col xs lg="6">
-          <div className="chipGroup">
-            <div className="chip">2</div>
-            <div className="chip">X</div>
-            <div className="chip">3</div>
-          </div>
+          <ChipGroup options={["2", "x", "3"]} />
+          <hr />
+          <ChipGroup options={["6", "7", "8"]} />
         </Col>
       </Row>
     </Container>
