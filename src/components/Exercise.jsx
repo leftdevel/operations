@@ -16,10 +16,9 @@ function Exercise({ exercise }) {
         </div>
         <hr />
         <div className="chipGroup">
-          {exercise.choices.map((choice, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Chip onClick={() => console.log(choice)} key={i}>
-              {choice}
+          {exercise.choices.map((choice) => (
+            <Chip onClick={() => console.log(choice)} key={choice.id}>
+              {choice.value}
             </Chip>
           ))}
         </div>

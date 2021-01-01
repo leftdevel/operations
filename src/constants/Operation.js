@@ -6,3 +6,10 @@ const Operation = {
 };
 
 export default Operation;
+
+export const OperationSymbolMap = {
+  [Operation.MULTIPLICATION]: "X",
+  [Operation.DIVISION]: "/",
+  [Operation.ADDITION]: "+",
+  [Operation.SUBTRACTION]: "-",
+};
