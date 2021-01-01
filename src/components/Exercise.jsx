@@ -9,10 +9,10 @@ function Exercise({ exercise }) {
   <Row className="justify-content-md-center">
     <Col xs lg="6">
       <ChipGroup
-        options={[exercise.factor1, exercise.expression, exercise.factor2]}
+        options={[exercise.factor1, exercise.operator, exercise.factor2]}
       />
       <hr />
-      <ChipGroup options={["6", "7", "8"]} />
+      <ChipGroup options={exercise.choices} />
     </Col>
   </Row>;
 }

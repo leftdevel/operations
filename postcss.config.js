@@ -1,3 +1,5 @@
+import Autoprefixer from "autoprefixer";
+
 module.exports = {
-  plugins: [require("autoprefixer")],
+  plugins: [Autoprefixer],
 };

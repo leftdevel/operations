@@ -1,7 +1,9 @@
 import Expressions from "../constants/Expressions";
-import { shuffle, randomIntFromInterval } from "../utils/MathUtils";
+import { shuffle, randomIntFromInterval } from "../utils";
 
-const maxChoices = 3;
+const MAX_CHOICES = 3;
+const FAKE_ANSWER_MIN_DISTANCE = 1;
+const FAKE_ANSWER_MAX_DISTANCE = 2;
 
 class Exercise {
   expression = null;
@@ -21,22 +23,29 @@ class Exercise {
   }
 
   generateChoices(totalChoices) {
-    if (totalChoices > maxChoices) {
-      throw new Error(`Can only generate a max of ${maxChoices}. Got ${totalChoices}`);
+    if (totalChoices > MAX_CHOICES) {
+      throw new Error(`Can only generate a max of ${MAX_CHOICES}. Got ${totalChoices}`);
     }
 
     // always include the actual answer
     const choices = [this.answer()];
     // a fake answer that is higher number (by 1 or 2) than the actual answer.
-    const fakeHigherAnswer = randomIntFromInterval(this.answer() + 1, this.answer() + 2);
+    const fakeHigherAnswer = randomIntFromInterval(
+      this.answer() + FAKE_ANSWER_MIN_DISTANCE,
+      this.answer() + FAKE_ANSWER_MAX_DISTANCE
+    );
     // a fake answer that is lower number (by 1 or 2) than the actual answer.
-    const fakeLowerAnswer = randomIntFromInterval(this.answer() - 2, this.answer() - 1);
+    const fakeLowerAnswer = randomIntFromInterval(
+      this.answer() - FAKE_ANSWER_MAX_DISTANCE,
+      this.answer() - FAKE_ANSWER_MIN_DISTANCE
+    );
     // add fake answers to an an array, then shuffle it so we guarantee that higher and lower fake
-    // answers will show up from time to time.
+    // answers will show up from time to time, specially when only two choices are expected, where one is
+    // the correct answer and the other one fake.
     const fakeAnswers = shuffle([fakeHigherAnswer, fakeLowerAnswer]);
 
-    while (choices.length < maxChoices) {
-      // generate a fake answer if required.
+    while (choices.length < MAX_CHOICES) {
+      // generategenerategenerategenerategenerategenerategenerategenerate a fake answer if required.
       if (choices.length < totalChoices) {
         choices.push(fakeAnswers.pop());
       } else {
@@ -44,7 +53,7 @@ class Exercise {
       }
     }
 
-    // shuffle final choices
+    // shuffle final choices so the correct answer don't always show up on the same place.
     return shuffle(choices);
   }
 

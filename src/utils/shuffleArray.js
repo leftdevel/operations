@@ -1,4 +1,4 @@
-export function shuffle(inputArray) {
+export default function shuffleArray(inputArray) {
   const outputArray = [...inputArray];
   let currentIndex = outputArray.length;
   let temporaryValue;
@@ -18,15 +18,3 @@ export function shuffle(inputArray) {
 
   return outputArray;
 }
-
-/**
- * Min and max included
- */
-export function randomIntFromInterval(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-export default {
-  shuffle,
-  randomIntFromInterval,
-};
