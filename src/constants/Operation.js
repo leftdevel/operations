@@ -1,8 +1,8 @@
-const Expressions = {
+const Operation = {
   MULTIPLICATION: "multiplication",
   DIVISION: "division",
   ADDITION: "addition",
   SUBTRACTION: "subtraction",
 };
 
-export default Expressions;
+export default Operation;

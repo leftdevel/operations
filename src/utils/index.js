@@ -1,7 +1,2 @@
-import randomIntFromInterval from "./randomIntFromInterval";
-import shuffleArray from "./shuffleArray";
-
-export default {
-  randomIntFromInterval,
-  shuffleArray,
-};
+export { default as randomIntFromInterval } from "./randomIntFromInterval";
+export { default as shuffleArray } from "./shuffleArray";

@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import cx from "classname";
 
-function Chip({ children }) {
+function Chip({ className, onClick, children }) {
   const ref = useRef(null);
   const [style, setStyle] = useState({ height: 0 });
 
@@ -10,17 +11,27 @@ function Chip({ children }) {
     setStyle({ height });
   }, []);
 
+  const Element = onClick ? "a" : "div";
+
   return (
-    <div ref={ref} style={style} className="chip">
+    <Element ref={ref} style={style} className={cx("chip", className)} onClick={onClick} onKeyUp={onClick}>
       <div className="content bg-light border">
         <h1>{children}</h1>
       </div>
-    </div>
+    </Element>
   );
 }
 
 Chip.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+Chip.defaultProps = {
+  children: "",
+  className: "",
+  onClick: null,
 };
 
 export default Chip;
