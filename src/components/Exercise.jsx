@@ -1,34 +1,24 @@
 import React from "react";
-import PropTypes from "prop-types";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Chip from "./Chip";
-import ExerciseModel from "../models/Exercise";
+import { useRecoilState } from "recoil";
+import Expression from "./Expression";
+import ExerciseProgressAtom from "../state/ExerciseProgressAtom";
+import ExerciseProgress from "../models/ExerciseProgress";
 
-function Exercise({ exercise }) {
-  return (
-    <Row className="justify-content-md-center">
-      <Col xs lg="6">
-        <div className="chipGroup">
-          <Chip>{exercise.factor1}</Chip>
-          <Chip>{exercise.operationSymbol}</Chip>
-          <Chip>{exercise.factor2}</Chip>
-        </div>
-        <hr />
-        <div className="chipGroup">
-          {exercise.choices.map((choice) => (
-            <Chip onClick={() => console.log(choice)} key={choice.id}>
-              {choice.value}
-            </Chip>
-          ))}
-        </div>
-      </Col>
-    </Row>
-  );
+function Exercise() {
+  const [exerciseProgress, setExerciseProgress] = useRecoilState(ExerciseProgressAtom);
+  const currentExpression = exerciseProgress.getCurrentExpression();
+
+  const onClick = (id) => {
+    console.log(id);
+
+    setTimeout(() => {
+      const newExerciseProgress = new ExerciseProgress(exerciseProgress.toJS());
+      newExerciseProgress.nextExpression();
+      setExerciseProgress(newExerciseProgress);
+    }, 2000);
+  };
+
+  return <Expression expression={currentExpression} onChoiceClick={onClick} />;
 }
-
-Exercise.propTypes = {
-  exercise: PropTypes.instanceOf(ExerciseModel).isRequired,
-};
 
 export default Exercise;

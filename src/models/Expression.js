@@ -1,4 +1,4 @@
-import uuid from "uuid";
+import { v4 as uuid } from "uuid";
 import Operation, { OperationSymbolMap } from "../constants/Operation";
 import AnswerChoicesGenerator from "../helpers/AnswerChoicesGenerator";
 
@@ -11,12 +11,14 @@ class Expression {
 
   choices = [];
 
+  hasRespondedCorrectly = null;
+
   constructor({ factor1, factor2, operation, totalChoices }) {
     this.factor1 = factor1;
     this.factor2 = factor2;
     this.operation = operation;
 
-    const choices = AnswerChoicesGenerator(this.answer(), totalChoices);
+    const choices = AnswerChoicesGenerator(this.getAnswer(), totalChoices);
 
     // give choices an id so they can be tracked back.
     choices.forEach((value) => {
@@ -24,7 +26,7 @@ class Expression {
     });
   }
 
-  answer() {
+  getAnswer() {
     switch (this.operation) {
       case Operation.MULTIPLICATION:
         return this.factor1 * this.factor2;
@@ -39,7 +41,15 @@ class Expression {
     }
   }
 
-  operationSymbolMap() {
+  respond(userAnswer) {
+    this.hasRespondedCorrectly = userAnswer === this.getAnswer();
+  }
+
+  hasResponded() {
+    return this.hasRespondedCorrectly !== null;
+  }
+
+  operationSymbol() {
     return OperationSymbolMap[this.operation];
   }
 }

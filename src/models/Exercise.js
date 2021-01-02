@@ -1,22 +1,44 @@
 import Expression from "./Expression";
+import { shuffleArray } from "../utils";
+import ExerciseOrder from "../constants/ExerciseOrder";
 
-/**
- * Generates and returns an object that represents a full exercise for a given base number.
- * @param {number} baseNumber the number to practice.
- * @param {ExerciseSettings} settings
- */
-function generateExercise(baseNumber, settings) {
-  const expressions = [];
+class Exercise {
+  expressions = [];
 
-  for (let i = 2; i <= 9; i += 1) {
-    const expression = new Expression({
-      factor1: baseNumber,
-      factor2: i,
-      operation: settings.operation,
-      totalChoices: settings.totalChoices,
-    });
-    expressions.push(expression);
+  /**
+   * Generates and store math expressions that represents a full exercise for a given base number.
+   * @param {number} baseNumber the number to practice.
+   * @param {ExerciseSettings} settings
+   */
+  constructor({ baseNumber, operation, totalChoices, order }) {
+    for (let i = 2; i <= 9; i += 1) {
+      const expression = new Expression({
+        factor1: baseNumber,
+        factor2: i,
+        operation,
+        totalChoices,
+      });
+      this.expressions.push(expression);
+    }
+
+    switch (order) {
+      case ExerciseOrder.DESC:
+        this.expressions = this.expressions.reverse();
+        break;
+      case ExerciseOrder.RAND:
+        this.expressions = shuffleArray(this.expressions);
+        break;
+      case ExerciseOrder.ASC:
+        // do nothing
+        break;
+      default:
+        throw new Error(`Unexpected order ${order}`);
+    }
+  }
+
+  getCorrectExpressions() {
+    this.expressions.filter((e) => e.hasRespondedCorrectly);
   }
 }
 
-export default generateExercise;
+export default Exercise;
