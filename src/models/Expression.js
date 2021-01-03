@@ -75,9 +75,9 @@ class Expression {
       factor1: this.factor1,
       factor2: this.factor2,
       userAnswer: this.userAnswer,
+      answer: this.getAnswer(),
       hasResponded: this.hasResponded(),
       hasRespondedCorrectly: this.hasRespondedCorrectly(),
-      answer: this.getAnswer(),
       choices: this.choices,
     };
   }
@@ -95,7 +95,7 @@ export function createFromJS(data) {
   });
 
   expression.choices = [...data.choices];
-  expression.respond(data.userAnswer);
+  expression.userAnswer = data.userAnswer;
 
   return expression;
 }

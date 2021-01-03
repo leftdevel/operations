@@ -25,9 +25,10 @@ function Expression({ expression, choicesDisabled, onChoiceClick }) {
                 // highlight the correct answer when an answer is chosen. The background color will determine if
                 // it was correctly chosen or not.
                 error:
-                  expression.hasResponded && !expression.hasRespondedCorrectly && choice.value === expression.answer,
-                success:
-                  expression.hasResponded && expression.hasRespondedCorrectly && choice.value === expression.answer,
+                  expression.hasResponded &&
+                  !expression.hasRespondedCorrectly &&
+                  choice.value === expression.userAnswer,
+                success: expression.hasResponded && choice.value === expression.answer,
               })}
             >
               {choice.value}
@@ -49,6 +50,7 @@ Expression.propTypes = {
     hasResponded: PropTypes.bool.isRequired,
     hasRespondedCorrectly: PropTypes.bool,
     answer: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    userAnswer: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     choices: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
