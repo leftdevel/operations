@@ -1,10 +1,17 @@
 import { shuffleArray, randomIntFromInterval } from "../utils";
 
 const MAX_CHOICES = 3;
+
+// Distances (see below) for fake answers vary from 1 to 2, this is mainly because if the fake answer is too off from
+// the correct answer it could become obvious that is fake. The closer it is to the real one, the more likely to confuse
+// the end user.
+
+// e.g if answer is 4 then the fake answer should be either 3 or 5 (+- 1);
 const FAKE_ANSWER_MIN_DISTANCE = 1;
+// e.g if answer is 4 then the fake answer should be either 2 or 6 (+- 2);
 const FAKE_ANSWER_MAX_DISTANCE = 2;
 
-export default function AnswerChoicesGenerator(answer, totalChoices) {
+function generateAnswerChoices(answer, totalChoices) {
   if (totalChoices > MAX_CHOICES) {
     throw new Error(`Can only generate a max of ${MAX_CHOICES}. Got ${totalChoices}`);
   }
@@ -32,3 +39,5 @@ export default function AnswerChoicesGenerator(answer, totalChoices) {
   // shuffle final choices so the correct answer don't always show up on the same place.
   return shuffleArray(choices);
 }
+
+export default generateAnswerChoices;

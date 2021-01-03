@@ -6,7 +6,7 @@ class Exercise {
   expressions = [];
 
   /**
-   * Generates and store math expressions that represents a full exercise for a given base number.
+   * Generates unique math expressions that represents a full exercise for a given base number.
    * @param {number} baseNumber the number to practice.
    * @param {ExerciseSettings} settings
    */
@@ -34,10 +34,6 @@ class Exercise {
       default:
         throw new Error(`Unexpected order ${order}`);
     }
-  }
-
-  getCorrectExpressions() {
-    this.expressions.filter((e) => e.hasRespondedCorrectly);
   }
 }
 

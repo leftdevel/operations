@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
 import Operation, { OperationSymbolMap } from "../constants/Operation";
-import AnswerChoicesGenerator from "../helpers/AnswerChoicesGenerator";
+import generateAnswerChoices from "../helpers/generateAnswerChoices";
 
 class Expression {
   operation = null;
@@ -18,7 +18,7 @@ class Expression {
     this.factor2 = factor2;
     this.operation = operation;
 
-    const choices = AnswerChoicesGenerator(this.getAnswer(), totalChoices);
+    const choices = generateAnswerChoices(this.getAnswer(), totalChoices);
 
     // give choices an id so they can be tracked back.
     choices.forEach((value) => {

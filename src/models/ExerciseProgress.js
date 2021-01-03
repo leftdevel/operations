@@ -44,7 +44,7 @@ class ExerciseProgress {
   toJS() {
     return {
       currentExpressionIndex: this.currentExpressionIndex,
-      exercise: this.exercise,
+      isLastExpression: this.isLastExpression(),
     };
   }
 }
