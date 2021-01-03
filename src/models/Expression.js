@@ -3,6 +3,8 @@ import Operation, { OperationSymbolMap } from "../constants/Operation";
 import generateAnswerChoices from "../helpers/generateAnswerChoices";
 
 class Expression {
+  id = null;
+
   operation = null;
 
   factor1 = null;
@@ -13,7 +15,8 @@ class Expression {
 
   hasRespondedCorrectly = null;
 
-  constructor({ factor1, factor2, operation, totalChoices }) {
+  constructor({ id, factor1, factor2, operation, totalChoices }) {
+    this.id = id || uuid();
     this.factor1 = factor1;
     this.factor2 = factor2;
     this.operation = operation;
@@ -49,8 +52,21 @@ class Expression {
     return this.hasRespondedCorrectly !== null;
   }
 
-  operationSymbol() {
+  getOperationSymbol() {
     return OperationSymbolMap[this.operation];
+  }
+
+  toJS() {
+    return {
+      id: this.id,
+      operation: this.operation,
+      operationSymbol: this.getOperationSymbol(),
+      factor1: this.factor1,
+      factor2: this.factor2,
+      hasResponded: this.hasResponded(),
+      hasRespondedCorrectly: this.hasRespondedCorrectly,
+      choices: this.choices,
+    };
   }
 }
 

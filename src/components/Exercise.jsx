@@ -1,20 +1,23 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import Expression from "./Expression";
-import ExerciseProgressAtom from "../state/ExerciseProgressAtom";
-import ExerciseProgress from "../models/ExerciseProgress";
+import ExerciseAtom from "../state/ExerciseAtom";
 
 function Exercise() {
-  const [exerciseProgress, setExerciseProgress] = useRecoilState(ExerciseProgressAtom);
-  const currentExpression = exerciseProgress.getCurrentExpression();
+  const [exercise, setExercise] = useRecoilState(ExerciseAtom);
+  console.log(exercise);
+  const currentExpression = exercise.expressions[exercise.currentExpressionIndex];
 
   const onClick = (id) => {
     console.log(id);
 
     setTimeout(() => {
-      const newExerciseProgress = new ExerciseProgress(exerciseProgress.toJS());
-      newExerciseProgress.nextExpression();
-      setExerciseProgress(newExerciseProgress);
+      const nextIndex = exercise.currentExpressionIndex + 1;
+      if (nextIndex < exercise.expressions.length) {
+        setExercise({ ...exercise, currentExpressionIndex: nextIndex });
+      } else {
+        console.log("end of exercises");
+      }
     }, 2000);
   };
 
