@@ -1,21 +1,23 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import cx from "classname";
+import cx from "classnames";
+import { useRecoilState } from "recoil";
+import ChipHeightAtom from "../state/ChipHeightAtom";
 
 function Chip({ className, onClick, children }) {
   const ref = useRef(null);
-  const [style, setStyle] = useState({ height: 0 });
+  const [chipHeight, setChipHeight] = useRecoilState(ChipHeightAtom);
 
   useEffect(() => {
     const height = ref.current ? `${ref.current.offsetWidth}px` : 0;
-    setStyle({ height });
-  }, []);
+    setChipHeight(height);
+  }, [chipHeight, setChipHeight]);
 
   const Element = onClick ? "a" : "div";
 
   return (
-    <Element ref={ref} style={style} className={cx("chip", className)} onClick={onClick} onKeyUp={onClick}>
-      <div className="content bg-light border">
+    <Element ref={ref} style={{ height: chipHeight }} className="chip" onClick={onClick} onKeyUp={onClick}>
+      <div className={cx("content bg-light border", className)}>
         <h1>{children}</h1>
       </div>
     </Element>

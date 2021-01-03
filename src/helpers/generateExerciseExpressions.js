@@ -7,7 +7,7 @@ import ExerciseOrder from "../constants/ExerciseOrder";
  * @param {number} baseNumber the number to practice.
  * @param {ExerciseSettings} settings
  */
-function generateExpressions({ baseNumber, operation, totalChoices, order }) {
+function generateExerciseExpressions({ baseNumber, operation, totalChoices, order }) {
   const expressions = [];
 
   for (let i = 2; i <= 9; i += 1) {
@@ -17,6 +17,8 @@ function generateExpressions({ baseNumber, operation, totalChoices, order }) {
       operation,
       totalChoices,
     });
+    // generate internal choices.
+    expression.generateChoices();
     expressions.push(expression.toJS());
   }
 
@@ -33,4 +35,4 @@ function generateExpressions({ baseNumber, operation, totalChoices, order }) {
   }
 }
 
-export default generateExpressions;
+export default generateExerciseExpressions;

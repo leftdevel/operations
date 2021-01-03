@@ -1,13 +1,13 @@
 import { atom, selector } from "recoil";
 import ExerciseSettingsAtom from "./ExerciseSettingsAtom";
-import generateExpressions from "../helpers/generateExpressions";
+import generateExerciseExpressions from "../helpers/generateExerciseExpressions";
 
 const ExerciseAtom = atom({
   key: "exerciseAtom",
   default: selector({
     key: "exerciseAtom/default",
     get: ({ get }) => ({
-      expressions: generateExpressions(get(ExerciseSettingsAtom)),
+      expressions: generateExerciseExpressions(get(ExerciseSettingsAtom)),
       currentExpressionIndex: 0,
       difficultyBonus: 0,
     }),
