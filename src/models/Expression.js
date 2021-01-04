@@ -85,6 +85,9 @@ class Expression {
 
 export default Expression;
 
+/**
+ * @returns {Expression}
+ */
 export function createFromJS(data) {
   const expression = new Expression({
     id: data.id,

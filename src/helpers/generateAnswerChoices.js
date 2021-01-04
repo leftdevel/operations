@@ -32,7 +32,9 @@ function generateAnswerChoices(answer, totalChoices) {
     if (choices.length < totalChoices) {
       choices.push(fakeAnswers.pop());
     } else {
-      choices.push(null);
+      // we don't use null here because we'll check this value against null in order to tell if the user
+      // has selected an empty string answer (they are selectable by design).
+      choices.push("");
     }
   }
 

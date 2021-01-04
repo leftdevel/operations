@@ -4,8 +4,8 @@ import "@babel/polyfill";
 import { Router } from "react-router";
 import { createBrowserHistory } from "history";
 import App from "./components/App";
-import "./styles.css";
-import "./styles.less";
+import "./styles/styles.css";
+import "./styles/styles.less";
 
 const history = createBrowserHistory();
 

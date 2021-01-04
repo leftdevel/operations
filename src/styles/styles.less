@@ -1,0 +1,59 @@
+@import "./prizes.less";
+
+.chipGroup {
+  display: flex;
+
+  .chip {
+    padding: 5px;
+    flex: 1 1 0;
+
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  a.chip,
+  a.chip:hover {
+    // remove bootstrap hover changes on anchor tag.
+    color: #007bff;
+    text-decoration: inherit;
+    cursor: pointer;
+  }
+}
+
+.exercise {
+  .expression {
+    .choice {
+      &.error {
+        background-color: lightcoral !important;
+      }
+
+      &.success {
+        background-color: lightgreen !important;
+      }
+    }
+  }
+}
+
+.scoreBoard {
+  .scoreProgress {
+    width: 100%;
+    margin-top: 20px;
+
+    &:last-child {
+      margin-bottom: 20px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10px;
+    }
+  }
+}

@@ -10,7 +10,7 @@ import ExerciseOrder from "../constants/ExerciseOrder";
 function generateExerciseExpressions({ baseNumber, operation, totalChoices, order }) {
   const expressions = [];
 
-  for (let i = 2; i <= 9; i += 1) {
+  for (let i = 1; i <= 10; i += 1) {
     const expression = new Expression({
       factor1: baseNumber,
       factor2: i,
