@@ -1,7 +1,6 @@
 import { atom, selector } from "recoil";
 import ExerciseSettingsAtom from "./ExerciseSettingsAtom";
-import generateExerciseExpressions from "../helpers/generateExerciseExpressions";
-import calculateDifficultyBonus from "../helpers/calculateDifficultyBonus";
+import Exercise from "../models/Exercise";
 
 const ExerciseAtom = atom({
   key: "exerciseAtom",
@@ -9,17 +8,8 @@ const ExerciseAtom = atom({
     key: "exerciseAtom/default",
     get: ({ get }) => {
       const settings = get(ExerciseSettingsAtom);
-
-      return {
-        expressions: generateExerciseExpressions(settings),
-        currentExpressionIndex: 0,
-        difficultyBonus: calculateDifficultyBonus(settings),
-        // scoped settings for the exercise, in case we ever allow changing global settings before finishing an exercise,
-        // or in case we ever allow storing an exercise so it can be played later.
-        order: settings.order,
-        timeout: settings.timeout,
-        totalChoices: settings.totalChoices,
-      };
+      const exercise = new Exercise(settings);
+      return exercise.toJS();
     },
   }),
 });

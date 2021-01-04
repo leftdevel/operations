@@ -1,17 +1,14 @@
-import { atom } from "recoil";
-import ExerciseOrder from "../constants/ExerciseOrder";
-import ExerciseTimeout from "../constants/ExerciseTimeout";
-import Operation from "../constants/Operation";
+import { atom, selector } from "recoil";
+import ExerciseSettings from "../models/ExerciseSettings";
 
 const ExerciseSettingsAtom = atom({
   key: "exerciseSettingsAtom",
-  default: {
-    baseNumber: 2,
-    operation: Operation.MULTIPLICATION,
-    order: ExerciseOrder.ASC,
-    totalChoices: 2,
-    timeout: ExerciseTimeout.MEDIUM,
-  },
+  default: selector({
+    get: () => {
+      const settings = new ExerciseSettings();
+      return settings.toJS();
+    },
+  }),
 });
 
 export default ExerciseSettingsAtom;

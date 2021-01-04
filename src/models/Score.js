@@ -84,6 +84,9 @@ class Score {
 
 export default Score;
 
+/**
+ * @param {import("./Exercise").default} exercise
+ */
 export function fromExercise(exercise) {
   return new Score({
     baseNumber: exercise.baseNumber,
