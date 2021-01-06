@@ -28,6 +28,10 @@ class Expression {
     this.totalChoices = totalChoices;
   }
 
+  /**
+   * Note: This has been decoupled from the constructor (see Exercise constructor's side effects) since we want
+   * to create a copy of this expression and we want to prevent generating choices unnecessarily.
+   */
   generateChoices() {
     const choices = generateAnswerChoices(this.getAnswer(), this.totalChoices);
     // give choices an id so they can be tracked back.

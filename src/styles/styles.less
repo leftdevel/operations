@@ -41,12 +41,21 @@
 }
 
 .scoreBoard {
+  .scoreProgressGroup {
+    display: flex;
+    flex-direction: column;
+  }
+
   .scoreProgress {
     width: 100%;
     margin-top: 20px;
 
     &:last-child {
       margin-bottom: 20px;
+    }
+
+    .action {
+      text-align: right;
     }
 
     .hero {

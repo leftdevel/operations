@@ -5,36 +5,36 @@ import Button from "react-bootstrap/Button";
 import ScoreModel from "../models/Score";
 import Score from "./Score";
 
-const MAX_DISPLAY_SCORES = 3;
+const DISPLAY_SCORES = 3;
 
-function ScoreProgress({ baseNumber, scores, displayScoresCount }) {
-  if (displayScoresCount > MAX_DISPLAY_SCORES) {
-    throw new Error(`Max display scores set to ${MAX_DISPLAY_SCORES}. Got ${displayScoresCount}`);
-  }
-
+function ScoreProgress({ baseNumber, scores, onPracticeClick }) {
   const filteredScores = useMemo(() => {
     return scores
       .sort((a, b) => {
         return a.date - b.date;
       })
-      .slice(displayScoresCount);
-  }, [scores, displayScoresCount]);
+      .slice(DISPLAY_SCORES);
+  }, [scores]);
 
   useEffect(() => {
-    // validate that scores are all of the same operations / category. E.g, multiplication scores cannot be mixed with
-    // division ones. The upper components should take care of doing the right filtering.
+    // validate that scores are all of the same operations / category and same baseNumber. E.g, multiplication scores
+    // cannot be mixed with division ones. The upper components should take care of doing the right filtering.
     const operations = [];
 
     scores.forEach((score) => {
       if (operations.indexOf(score.operation) === -1) {
         operations.push(score.operation);
       }
+
+      if (score.baseNumber !== baseNumber) {
+        throw new Error(`Scores must be of the same base number. Got '${score.baseNumber}'`);
+      }
     });
 
     if (operations.length > 1) {
       throw new Error(`Scores must be of the same operation. Got '${operations.join(", ")}'`);
     }
-  }, [scores]);
+  }, [scores, baseNumber]);
 
   return (
     <Card className="scoreProgress">
@@ -45,7 +45,9 @@ function ScoreProgress({ baseNumber, scores, displayScoresCount }) {
             <Score key={score.id} score={score} />
           ))}
         </div>
-        <Button variant="primary">Practicar</Button>
+        <div className="action">
+          <Button variant="primary" onClick={onPracticeClick}>Practicar</Button>
+        </div>
       </Card.Body>
     </Card>
   );
@@ -54,11 +56,7 @@ function ScoreProgress({ baseNumber, scores, displayScoresCount }) {
 ScoreProgress.propTypes = {
   baseNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   scores: PropTypes.arrayOf(PropTypes.instanceOf(ScoreModel)).isRequired,
-  displayScoresCount: PropTypes.number,
-};
-
-ScoreProgress.defaultProps = {
-  displayScoresCount: 3,
+  onPracticeClick: PropTypes.func.isRequired,
 };
 
 export default ScoreProgress;

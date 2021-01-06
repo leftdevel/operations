@@ -29,7 +29,7 @@ const respond = (choiceId, { exercise, currentExpression, setChoicesDisabled, se
     } else {
       setRedirectTo("/scores");
     }
-  }, 500);
+  }, 300);
 };
 
 function Exercise() {
