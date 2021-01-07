@@ -43,19 +43,32 @@
 .scoreBoard {
   .scoreProgressGroup {
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
+
+    // @todo use these with media queries
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .scoreProgress {
-    width: 100%;
+    flex-basis: 48%;
     margin-top: 20px;
 
-    &:last-child {
-      margin-bottom: 20px;
+    // should only apply for mobile
+    // &:last-child {
+    //   margin-bottom: 20px;
+    // }
+
+    .card-title {
+      display: flex;
+      justify-content: center;
     }
 
     .action {
-      text-align: right;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .hero {

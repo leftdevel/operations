@@ -27,7 +27,7 @@ function ScoreBoard() {
     <Row className="scoreBoard justify-content-md-center">
       <Col xs lg="6">
         <div className="scoreProgressGroup">
-          {[2, 3, 4, 5, 6, 7, 8, 9, 10].map((baseNumber) => (
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((baseNumber) => (
             <ScoreProgress
               key={baseNumber}
               baseNumber={baseNumber}
