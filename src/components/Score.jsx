@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
+import { faAward } from "@fortawesome/free-solid-svg-icons";
 import cx from "classnames";
 import ScoreModel from "../models/Score";
 
@@ -19,8 +21,8 @@ function Score({ score }) {
         prizeNone: score.isPrizeNone(),
       })}
     >
-      <div className="level">{`Nivel ${score.getLevelNumber()}`}</div>
-      <div className="points">{totalPoints}</div>
+      <div className="award"><Icon icon={faAward} /></div>
+      <div className="level"></div>
     </div>
   );
 }

@@ -2,8 +2,6 @@ import React, { useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
-import { faAward } from "@fortawesome/free-solid-svg-icons";
 import ScoreModel from "../models/Score";
 import Score from "./Score";
 import validateScores from "../helpers/validateScores";
@@ -28,19 +26,17 @@ function ScoreProgress({ baseNumber, scores, onPracticeClick }) {
     <Card className="scoreProgress">
       <Card.Body>
         <Card.Title>
-          <Icon icon={faAward} />
+          <span className="baseNumber">{baseNumber}</span>
+          <span className="scoreList">
+            {filteredScores.map((score) => (
+              <Score key={score.id} score={score} />
+            ))}
+          </span>
         </Card.Title>
-        <div className="scoreList">
-          {filteredScores.map((score) => (
-            <Score key={score.id} score={score} />
-          ))}
-        </div>
-        <div className="action">
-          <h4>{baseNumber}</h4>
-          <Button variant="primary" onClick={onPracticeClick}>
-            Practicar
-          </Button>
-        </div>
+        <Card.Text>Última partida: 2021-01-01 12:43pm</Card.Text>
+        <Button variant="primary" onClick={onPracticeClick}>
+          Practicar
+        </Button>
       </Card.Body>
     </Card>
   );
