@@ -21,8 +21,13 @@ function Score({ score }) {
         prizeNone: score.isPrizeNone(),
       })}
     >
-      <div className="award"><Icon icon={faAward} /></div>
-      <div className="level"></div>
+      <div className="award">
+        <Icon icon={faAward} />
+      </div>
+      <div className="level">
+        Nivel
+        {score.getLevelNumber()}
+      </div>
     </div>
   );
 }

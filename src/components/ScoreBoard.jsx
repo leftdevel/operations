@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useHistory } from "react-router-dom";
 import Row from "react-bootstrap/Row";
@@ -31,7 +31,7 @@ function ScoreBoard() {
             <ScoreProgress
               key={baseNumber}
               baseNumber={baseNumber}
-              scores={[]}
+              scores={scoreBoard.filter((el) => el.baseNumber === baseNumber)}
               onPracticeClick={() => onPracticeClick(baseNumber)}
             />
           ))}

@@ -1,3 +1,4 @@
+import { readyException } from "jquery";
 import { v4 as uuid } from "uuid";
 
 /**
@@ -7,50 +8,34 @@ import { v4 as uuid } from "uuid";
 class Score {
   id = null;
 
+  level = null;
+
   baseNumber = null;
 
   operation = null;
 
-  totalChoices = 0;
+  totalExpressions = null;
 
-  totalExpressions = 0;
-
-  totalAnsweredCorrectly = 0;
-
-  difficultyBonus = 0;
-
-  timeout = 0;
-
-  order = null;
+  totalAnsweredCorrectly = null;
 
   date = null;
 
-  constructor({
-    id,
-    baseNumber,
-    operation,
-    totalChoices,
-    totalExpressions,
-    totalAnsweredCorrectly,
-    timeout,
-    order,
-    difficultyBonus,
-    date,
-  }) {
+  constructor({ id, level, baseNumber, operation, totalExpressions, totalAnsweredCorrectly, date }) {
     this.id = id || uuid();
+    this.level = level;
     this.baseNumber = baseNumber;
     this.operation = operation;
-    this.totalChoices = totalChoices;
     this.totalExpressions = totalExpressions;
     this.totalAnsweredCorrectly = totalAnsweredCorrectly;
-    this.timeout = timeout;
-    this.order = order;
-    this.difficultyBonus = difficultyBonus;
     this.date = date || Date.now();
   }
 
   getSuccessRate() {
-    return 100 * (this.totalAnsweredCorrectly / (this.totalExpressions || 0));
+    if (this.totalExpressions === 0) {
+      return 0;
+    }
+
+    return 100 * (this.totalAnsweredCorrectly / this.totalExpressions);
   }
 
   isPrizeGold() {
@@ -68,18 +53,6 @@ class Score {
   isPrizeNone() {
     return this.getSuccessRate() < 60;
   }
-
-  /**
-   * Here it's obvious that the level number is the same as the totalChoices. Still
-   * we want some sort of encapsulation in case this needs to change in the future.
-   */
-  getLevelNumber() {
-    if (!(this.totalChoices >= 1 && this.totalChoices <= 3)) {
-      throw new Error(`Unexpected totalChoices value. Got ${this.totalChoices}`);
-    }
-
-    return this.totalChoices;
-  }
 }
 
 export default Score;
@@ -88,14 +61,6 @@ export default Score;
  * @param {import("./Exercise").default} exercise
  */
 export function fromExercise(exercise) {
-  return new Score({
-    baseNumber: exercise.baseNumber,
-    operation: exercise.operation,
-    totalExpressions: exercise.expressions.length,
-    totalChoices: exercise.totalChoices,
-    totalAnsweredCorrectly: exercise.expressions.filter((e) => e.hasRespondedCorrectly).length,
-    timeout: exercise.timeout,
-    order: exercise.order,
-    difficultyBonus: exercise.difficultyBonus,
-  });
+  throw new readyException("@todo");
+  return new Score({});
 }
