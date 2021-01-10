@@ -63,19 +63,34 @@
     .card-title {
       display: flex;
       justify-content: center;
+      flex-direction: column;
+      text-align: center;
     }
 
-    // .action {
-    //   display: flex;
-    //   justify-content: space-between;
-    //   align-items: center;
-    // }
+    .scoreList {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 0.8em;
+    }
 
-    // .hero {
-    //   display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    //   height: 10px;
-    // }
+    .score {
+      flex: 0 0 30%;
+      justify-content: center;
+
+      .awardWrapper {
+        text-align: center;
+      }
+
+      .award {
+        display: inline-block;
+        width: 50%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 50%;
+        color: red;
+      }
+    }
   }
 }

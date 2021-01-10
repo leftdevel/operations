@@ -11,7 +11,7 @@ import Exercise from "../models/Exercise";
 
 function ScoreBoard() {
   const history = useHistory();
-  // @todo get latests practices. At least 3 practices per base number.
+  // @todo scoreBoard should be filtered by operation
   const scoreBoard = useRecoilValue(ScoreBoardAtom);
   const setExercise = useSetRecoilState(ExerciseAtom);
 
@@ -31,7 +31,7 @@ function ScoreBoard() {
             <ScoreProgress
               key={baseNumber}
               baseNumber={baseNumber}
-              scores={scoreBoard.filter((el) => el.baseNumber === baseNumber)}
+              scores={scoreBoard[baseNumber].filter((el) => el.baseNumber === baseNumber)}
               onPracticeClick={() => onPracticeClick(baseNumber)}
             />
           ))}

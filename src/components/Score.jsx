@@ -10,24 +10,21 @@ import ScoreModel from "../models/Score";
  * @param {ScoreModel} obj.score
  */
 function Score({ score }) {
-  const totalPoints = score.totalAnsweredCorrectly + score.difficultyBonus;
-
   return (
-    <div
-      className={cx("score", {
-        prizeGold: score.isPrizeGold(),
-        prizeSilver: score.isPrizeSilver(),
-        prizeBronze: score.isPrizeBronze(),
-        prizeNone: score.isPrizeNone(),
-      })}
-    >
-      <div className="award">
-        <Icon icon={faAward} />
+    <div className="score">
+      <div className="awardWrapper">
+        <div
+          className={cx("award", {
+            prizeGold: score.isPrizeGold(),
+            prizeSilver: score.isPrizeSilver(),
+            prizeBronze: score.isPrizeBronze(),
+            prizeNone: score.isPrizeNone(),
+          })}
+        >
+          <Icon icon={faAward} />
+        </div>
       </div>
-      <div className="level">
-        Nivel
-        {score.getLevelNumber()}
-      </div>
+      <div className="level">{score.level}</div>
     </div>
   );
 }

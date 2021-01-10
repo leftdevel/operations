@@ -13,7 +13,7 @@ const filterScores = (scores) => {
     .sort((a, b) => {
       return a.date - b.date;
     })
-    .slice(DISPLAY_SCORES);
+    .slice(0, DISPLAY_SCORES);
 };
 
 function ScoreProgress({ baseNumber, scores, onPracticeClick }) {
@@ -26,12 +26,12 @@ function ScoreProgress({ baseNumber, scores, onPracticeClick }) {
     <Card className="scoreProgress">
       <Card.Body>
         <Card.Title>
-          <span className="baseNumber">{baseNumber}</span>
-          <span className="scoreList">
+          <div className="baseNumber">{baseNumber}</div>
+          <div className="scoreList">
             {filteredScores.map((score) => (
               <Score key={score.id} score={score} />
             ))}
-          </span>
+          </div>
         </Card.Title>
         <Card.Text>Última partida: 2021-01-01 12:43pm</Card.Text>
         <Button variant="primary" onClick={onPracticeClick}>
