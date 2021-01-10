@@ -21,10 +21,9 @@ function Score({ score }) {
             prizeNone: score.isPrizeNone(),
           })}
         >
-          <Icon icon={faAward} />
+          {score.level || 0}
         </div>
       </div>
-      <div className="level">{score.level}</div>
     </div>
   );
 }

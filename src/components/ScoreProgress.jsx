@@ -9,11 +9,13 @@ import validateScores from "../helpers/validateScores";
 const DISPLAY_SCORES = 3;
 
 const filterScores = (scores) => {
-  return scores
+  const filtered = scores
     .sort((a, b) => {
       return a.date - b.date;
     })
     .slice(0, DISPLAY_SCORES);
+
+  return filtered.length > 0 ? filtered : [new ScoreModel({})];
 };
 
 function ScoreProgress({ baseNumber, scores, onPracticeClick }) {

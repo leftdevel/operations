@@ -268,7 +268,36 @@
   );
 }
 
-.prizeNone {
+.prizeCarbon {
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.45);
+  border: 1px solid #565656;
+  box-shadow:
+    2px 2px 0.5em rgba(0, 0, 0, 0.55),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.55),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.5)
+  ;
+  background:
+    -moz-repeating-linear-gradient(
+    top, #565656, #131313 2px, #565656 1px
+  );
+  background:
+    -o-repeating-linear-gradient(
+    top, #565656, #131313 2px, #565656 1px
+  );
+  background:
+    -webkit-repeating-linear-gradient(
+    top, #565656, #131313 2px, #565656 1px
+  );
+  background:
+    repeating-linear-gradient(
+    top, #565656, #131313 2px, #565656 1px
+  );
+}
+
+.prizeChina {
   color: #dedede;
   text-decoration: none;
   font-weight: bold;
@@ -278,4 +307,8 @@
   background: -webkit-linear-gradient(#ffffff, #e3e3e3);
   background: -o-linear-gradient(#ffffff, #e3e3e3);
   background: linear-gradient(#ffffff, #e3e3e3);
+}
+
+.prizeNone {
+  visibility: hidden;
 }

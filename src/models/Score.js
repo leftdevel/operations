@@ -31,7 +31,7 @@ class Score {
   }
 
   getSuccessRate() {
-    if (this.totalExpressions === 0) {
+    if (!this.totalExpressions) {
       return 0;
     }
 
