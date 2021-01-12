@@ -12,7 +12,7 @@ const ScoreBoardRepository = {
           operation: Operation.MULTIPLICATION,
           totalExpressions: 10,
           totalAnsweredCorrectly: 10,
-          date: Date.now(),
+          date: Date.now() - 20000,
         },
         {
           id: 2,
@@ -21,7 +21,7 @@ const ScoreBoardRepository = {
           operation: Operation.MULTIPLICATION,
           totalExpressions: 10,
           totalAnsweredCorrectly: 10,
-          date: Date.now() - 1000,
+          date: Date.now() - 100000,
         },
         {
           id: 3,
@@ -30,7 +30,7 @@ const ScoreBoardRepository = {
           operation: Operation.MULTIPLICATION,
           totalExpressions: 10,
           totalAnsweredCorrectly: 10,
-          date: Date.now() - 2000,
+          date: Date.now() - 200000,
         },
       ],
       2: [
@@ -41,6 +41,7 @@ const ScoreBoardRepository = {
           operation: Operation.MULTIPLICATION,
           totalExpressions: 10,
           totalAnsweredCorrectly: 10,
+          date: Date.now() - 1000000,
         },
         {
           id: 5,
@@ -49,7 +50,7 @@ const ScoreBoardRepository = {
           operation: Operation.MULTIPLICATION,
           totalExpressions: 10,
           totalAnsweredCorrectly: 10,
-          date: Date.now() - 1000,
+          date: Date.now() - 100000,
         },
         {
           id: 6,
@@ -58,7 +59,7 @@ const ScoreBoardRepository = {
           operation: Operation.MULTIPLICATION,
           totalExpressions: 10,
           totalAnsweredCorrectly: 10,
-          date: Date.now() - 2000,
+          date: Date.now() - 200000,
         },
       ],
     };
