@@ -5,7 +5,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ScoreBoardAtom from "../state/ScoreBoardAtom";
 import ExerciseAtom from "../state/ExerciseAtom";
-import ExerciseSettings from "../models/ExerciseSettings";
 import ScoreProgress from "./ScoreProgress";
 import Exercise from "../models/Exercise";
 
@@ -16,8 +15,8 @@ function ScoreBoard() {
   const setExercise = useSetRecoilState(ExerciseAtom);
 
   const onPracticeClick = (baseNumber) => {
-    const settings = new ExerciseSettings({ baseNumber });
-    const exercise = new Exercise(settings);
+    // @TODO boot exercise
+    const exercise = new Exercise({});
     setExercise(exercise.toJS());
     // For now, redirect to index. Eventually this should redirect to /levels/[2..10]
     history.push("/");

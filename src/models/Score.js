@@ -1,4 +1,3 @@
-import { readyException } from "jquery";
 import { v4 as uuid } from "uuid";
 
 /**
@@ -53,6 +52,18 @@ class Score {
   isPrizeNone() {
     return this.getSuccessRate() < 60;
   }
+
+  toJS() {
+    return {
+      id: this.id,
+      level: this.level,
+      baseNumber: this.baseNumber,
+      operation: this.operation,
+      totalExpressions: this.totalExpressions,
+      totalAnsweredCorrectly: this.totalAnsweredCorrectly,
+      date: this.date,
+    };
+  }
 }
 
 export default Score;
@@ -61,6 +72,7 @@ export default Score;
  * @param {import("./Exercise").default} exercise
  */
 export function fromExercise(exercise) {
-  throw new readyException("@todo");
-  return new Score({});
+  return new Score({
+
+  });
 }
