@@ -1,14 +1,18 @@
 import generateExerciseExpressions from "../helpers/generateExerciseExpressions";
-import calculateDifficultyBonus from "../helpers/calculateDifficultyBonus";
 
 class Exercise {
+  baseNumber = null;
+
+  operation = null;
+
   level = null;
 
+  /**
+   * @property {import("./Expression").default} expressions
+   */
   expressions = [];
 
   currentExpressionIndex = 0;
-
-  difficultyBonus = 0;
 
   order = null;
 
@@ -16,9 +20,10 @@ class Exercise {
 
   totalChoices = 0;
 
-  constructor({ baseNumber, operation, level, totalChoices, order, timeout  }) {
+  constructor({ baseNumber, operation, level, totalChoices, order, timeout }) {
     this.expressions = generateExerciseExpressions({ baseNumber, operation, totalChoices, order });
     this.baseNumber = baseNumber;
+    this.operation = operation;
     this.level = level;
     this.currentExpressionIndex = 0;
     this.order = order;
@@ -28,7 +33,10 @@ class Exercise {
 
   toJS() {
     return {
-      expressions: this.expressions,
+      baseNumber: this.baseNumber,
+      operation: this.operation,
+      level: this.level,
+      expressions: this.expressions.map((e) => e.toJS()),
       currentExpressionIndex: this.currentExpressionIndex,
       order: this.order,
       timeout: this.timeout,

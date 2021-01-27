@@ -1,5 +1,6 @@
 import { atom, selector } from "recoil";
-import ExerciseSettings from "../models/ExerciseSettings";
+import LevelTable from "../constants/LevelTable";
+import Operation from "../constants/Operation";
 import Exercise from "../models/Exercise";
 
 const ExerciseAtom = atom({
@@ -7,9 +8,9 @@ const ExerciseAtom = atom({
   default: selector({
     key: "exerciseAtom/default",
     get: () => {
+      const level2 = LevelTable[1];
       // eventually set default timeout to SLOW
-      const settings = new ExerciseSettings({ baseNumber: 2 });
-      const exercise = new Exercise(settings.toJS());
+      const exercise = new Exercise({ ...level2, baseNumber: 2, operation: Operation.MULTIPLICATION });
 
       return exercise.toJS();
     },

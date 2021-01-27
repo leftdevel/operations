@@ -7,11 +7,11 @@ import { v4 as uuid } from "uuid";
 class Score {
   id = null;
 
-  level = null;
-
   baseNumber = null;
 
   operation = null;
+
+  level = null;
 
   totalExpressions = null;
 
@@ -19,11 +19,11 @@ class Score {
 
   date = null;
 
-  constructor({ id, level, baseNumber, operation, totalExpressions, totalAnsweredCorrectly, date }) {
+  constructor({ id, baseNumber, operation, level, totalExpressions, totalAnsweredCorrectly, date }) {
     this.id = id || uuid();
-    this.level = level;
     this.baseNumber = baseNumber;
     this.operation = operation;
+    this.level = level;
     this.totalExpressions = totalExpressions;
     this.totalAnsweredCorrectly = totalAnsweredCorrectly;
     this.date = date || Date.now();
@@ -56,9 +56,9 @@ class Score {
   toJS() {
     return {
       id: this.id,
-      level: this.level,
       baseNumber: this.baseNumber,
       operation: this.operation,
+      level: this.level,
       totalExpressions: this.totalExpressions,
       totalAnsweredCorrectly: this.totalAnsweredCorrectly,
       date: this.date,
@@ -73,6 +73,10 @@ export default Score;
  */
 export function fromExercise(exercise) {
   return new Score({
-
+    baseNumber: exercise.baseNumber,
+    operation: exercise.operation,
+    level: exercise.level,
+    totalExpressions: exercise.expressions.length,
+    totalAnsweredCorrectly: exercise.expressions.filter((e) => e.hasRespondedCorrectly).length,
   });
 }
