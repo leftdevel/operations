@@ -1,8 +1,15 @@
 import generateExerciseExpressions from "../helpers/generateExerciseExpressions";
 
 class Exercise {
-  level = 0;
+  baseNumber = null;
 
+  operation = null;
+
+  level = null;
+
+  /**
+   * @property {import("./Expression").default} expressions
+   */
   expressions = [];
 
   currentExpressionIndex = 0;
@@ -13,15 +20,12 @@ class Exercise {
 
   totalChoices = 0;
 
-  /**
-   * @param {require("./ExerciseSettings").default}
-   */
-  constructor({ baseNumber, level, operation, order, totalChoices, timeout }) {
+  constructor({ baseNumber, operation, level, totalChoices, order, timeout }) {
     this.expressions = generateExerciseExpressions({ baseNumber, operation, totalChoices, order });
-    this.currentExpressionIndex = 0;
-    // scoped settings for the exercise, in case we ever allow changing global settings before finishing an exercise,
-    // or in case we ever allow storing an exercise so it can be played later.
+    this.baseNumber = baseNumber;
+    this.operation = operation;
     this.level = level;
+    this.currentExpressionIndex = 0;
     this.order = order;
     this.timeout = timeout;
     this.totalChoices = totalChoices;
@@ -29,9 +33,11 @@ class Exercise {
 
   toJS() {
     return {
-      expressions: this.expressions,
+      baseNumber: this.baseNumber,
+      operation: this.operation,
+      level: this.level,
+      expressions: this.expressions.map((e) => e.toJS()),
       currentExpressionIndex: this.currentExpressionIndex,
-      difficultyBonus: this.difficultyBonus,
       order: this.order,
       timeout: this.timeout,
       totalChoices: this.totalChoices,

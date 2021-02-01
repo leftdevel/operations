@@ -1,6 +1,7 @@
 import { v4 as uuid } from "uuid";
 import Operation, { OperationSymbolMap } from "../constants/Operation";
 import generateAnswerChoices from "../helpers/generateAnswerChoices";
+import Choice from "./Choice";
 
 /**
  * @class
@@ -16,6 +17,9 @@ class Expression {
 
   totalChoices = 0;
 
+  /**
+   * @property {Choice[]} choices
+   */
   choices = [];
 
   userAnswer = null;
@@ -36,7 +40,7 @@ class Expression {
     const choices = generateAnswerChoices(this.getAnswer(), this.totalChoices);
     // give choices an id so they can be tracked back.
     choices.forEach((value) => {
-      this.choices.push({ id: uuid(), value });
+      this.choices.push(new Choice({ value }));
     });
   }
 
@@ -82,7 +86,7 @@ class Expression {
       answer: this.getAnswer(),
       hasResponded: this.hasResponded(),
       hasRespondedCorrectly: this.hasRespondedCorrectly(),
-      choices: this.choices,
+      choices: this.choices.map((choice) => choice.toJS()),
     };
   }
 }
@@ -101,7 +105,7 @@ export function createFromJS(data) {
     totalChoices: data.totalChoices,
   });
 
-  expression.choices = [...data.choices];
+  expression.choices = data.choices.map((choice) => new Choice(choice));
   expression.userAnswer = data.userAnswer;
 
   return expression;

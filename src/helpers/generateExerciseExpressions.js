@@ -19,7 +19,7 @@ function generateExerciseExpressions({ baseNumber, operation, totalChoices, orde
     });
     // generate internal choices.
     expression.generateChoices();
-    expressions.push(expression.toJS());
+    expressions.push(expression);
   }
 
   switch (order) {
