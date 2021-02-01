@@ -1,4 +1,3 @@
-import { readyException } from "jquery";
 import { v4 as uuid } from "uuid";
 
 /**
@@ -61,6 +60,7 @@ export default Score;
  * @param {import("./Exercise").default} exercise
  */
 export function fromExercise(exercise) {
-  throw new readyException("@todo");
-  return new Score({});
+  return new Score({
+    level: exercise.level,
+  });
 }

@@ -1,12 +1,11 @@
 import generateExerciseExpressions from "../helpers/generateExerciseExpressions";
-import calculateDifficultyBonus from "../helpers/calculateDifficultyBonus";
 
 class Exercise {
+  level = 0;
+
   expressions = [];
 
   currentExpressionIndex = 0;
-
-  difficultyBonus = 0;
 
   order = null;
 
@@ -14,15 +13,18 @@ class Exercise {
 
   totalChoices = 0;
 
-  constructor(settings) {
-    this.expressions = generateExerciseExpressions(settings);
+  /**
+   * @param {require("./ExerciseSettings").default}
+   */
+  constructor({ baseNumber, level, operation, order, totalChoices, timeout }) {
+    this.expressions = generateExerciseExpressions({ baseNumber, operation, totalChoices, order });
     this.currentExpressionIndex = 0;
-    this.difficultyBonus = calculateDifficultyBonus(settings);
     // scoped settings for the exercise, in case we ever allow changing global settings before finishing an exercise,
     // or in case we ever allow storing an exercise so it can be played later.
-    this.order = settings.order;
-    this.timeout = settings.timeout;
-    this.totalChoices = settings.totalChoices;
+    this.level = level;
+    this.order = order;
+    this.timeout = timeout;
+    this.totalChoices = totalChoices;
   }
 
   toJS() {
