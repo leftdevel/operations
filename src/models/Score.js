@@ -71,7 +71,7 @@ export default Score;
 /**
  * @param {import("./Exercise").default} exercise
  */
-export function fromExercise(exercise) {
+export function createFromExercise(exercise) {
   return new Score({
     baseNumber: exercise.baseNumber,
     operation: exercise.operation,

@@ -1,68 +1,26 @@
 import Operation from "../constants/Operation";
 
+const defaultScoreBoard = {
+  1: [],
+  2: [],
+  3: [],
+  4: [],
+  5: [],
+  6: [],
+  7: [],
+  8: [],
+  9: [],
+  10: [],
+};
+
 const ScoreBoardRepository = {
-  get(/* @todo filter by operation */) {
-    // roughly how the backend would format and return the results.
-    return {
-      1: [
-        {
-          id: 1,
-          level: 1,
-          baseNumber: 1,
-          operation: Operation.MULTIPLICATION,
-          totalExpressions: 10,
-          totalAnsweredCorrectly: 10,
-          date: Date.now() - 20000,
-        },
-        {
-          id: 2,
-          level: 3,
-          baseNumber: 1,
-          operation: Operation.MULTIPLICATION,
-          totalExpressions: 10,
-          totalAnsweredCorrectly: 10,
-          date: Date.now() - 100000,
-        },
-        {
-          id: 3,
-          level: 2,
-          baseNumber: 1,
-          operation: Operation.MULTIPLICATION,
-          totalExpressions: 10,
-          totalAnsweredCorrectly: 10,
-          date: Date.now() - 200000,
-        },
-      ],
-      2: [
-        {
-          id: 4,
-          level: 1,
-          baseNumber: 2,
-          operation: Operation.MULTIPLICATION,
-          totalExpressions: 10,
-          totalAnsweredCorrectly: 10,
-          date: Date.now() - 1000000,
-        },
-        {
-          id: 5,
-          level: 3,
-          baseNumber: 2,
-          operation: Operation.MULTIPLICATION,
-          totalExpressions: 10,
-          totalAnsweredCorrectly: 10,
-          date: Date.now() - 100000,
-        },
-        {
-          id: 6,
-          level: 2,
-          baseNumber: 2,
-          operation: Operation.MULTIPLICATION,
-          totalExpressions: 10,
-          totalAnsweredCorrectly: 10,
-          date: Date.now() - 200000,
-        },
-      ],
-    };
+  addScore(score) {
+    const scoreBoard = this.getScoreBoard();
+
+    return Promise.resolve();
+  },
+  getScoreBoard(/* @todo filter by operation */) {
+    return Promise.resolve(window.localStorage.getItem("scoreBoard") || defaultScoreBoard);
   },
 };
 
