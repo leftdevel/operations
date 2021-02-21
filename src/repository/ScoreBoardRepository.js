@@ -14,10 +14,18 @@ const defaultScoreBoard = {
 };
 
 const ScoreBoardRepository = {
-  addScore(score) {
-    const scoreBoard = this.getScoreBoard();
+  /**
+   * @param {import("../models/Score").default} score
+   */
+  async addScore(score) {
+    const scoreBoard = await this.getScoreBoard();
+    const baseNumberScores = scoreBoard[score.baseNumber];
+    baseNumberScores.push(score);
+    scoreBoard[score.baseNumber] = baseNumberScores.splice(0, 10);
 
-    return Promise.resolve();
+    window.localStorage.setItem("scoreBoard", scoreBoard);
+
+    return Promise.resolve(scoreBoard);
   },
   getScoreBoard(/* @todo filter by operation */) {
     return Promise.resolve(window.localStorage.getItem("scoreBoard") || defaultScoreBoard);
