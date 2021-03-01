@@ -4,10 +4,8 @@ import { Redirect } from "react-router";
 import Expression from "./Expression";
 import { createFromJS } from "../models/Expression";
 import ExerciseAtom from "../state/ExerciseAtom";
-import ScoreBoardAtom from "../state/ScoreBoardAtom";
 import { replaceItemAtIndex } from "../utils";
 import { createFromExercise } from "../models/Score";
-import { exact } from "prop-types";
 
 const respond = (choiceId, { exercise, currentExpression, setChoicesDisabled, setExercise, setRedirectTo }) => {
   setChoicesDisabled(true);
@@ -32,6 +30,7 @@ const respond = (choiceId, { exercise, currentExpression, setChoicesDisabled, se
       setChoicesDisabled(false);
     } else {
       const score = createFromExercise(exercise);
+      // @TODO save
       setRedirectTo("/scores");
     }
   }, 300);

@@ -6,7 +6,7 @@ const ScoreBoardAtom = atom({
   key: "scoreBoardAtom",
   default: selector({
     key: "scoreBoardAtom/selector",
-    get: (/* @todo filter by operation */) => {
+    get: async (/* @todo filter by operation */) => {
       const scoreBoard = ScoreBoardRepository.get();
       const result = {};
 
